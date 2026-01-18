@@ -1,0 +1,257 @@
+/**
+ * Toolbar Component Styles
+ */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+  height: 60px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   BRAND SECTION
+   ============================================ */
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.toolbar-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.toolbar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+.toolbar-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.toolbar-btn:hover {
+  transform: translateY(-1px);
+}
+
+.toolbar-btn:active {
+  transform: translateY(0);
+}
+
+/* Primary Button */
+.toolbar-btn--primary {
+  color: white;
+  background: var(--accent-primary);
+}
+
+.toolbar-btn--primary:hover {
+  background: var(--accent-primary-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary Button */
+.toolbar-btn--secondary {
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+}
+
+.toolbar-btn--secondary:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* Danger Button */
+.toolbar-btn--danger {
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+}
+
+.toolbar-btn--danger:hover {
+  color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* ============================================
+   ICONS
+   ============================================ */
+
+.toolbar-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-color);
+  margin: 0 var(--spacing-xs);
+}
+
+/* ============================================
+   TOAST NOTIFICATION
+   ============================================ */
+
+.toolbar-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 4px 20px rgba(34, 197, 94, 0.4),
+    0 0 40px rgba(34, 197, 94, 0.2);
+  animation: toastSlideIn 0.3s ease-out;
+  z-index: 9999;
+}
+
+.toolbar-toast-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - TABLET (< 768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .toolbar {
+    padding: var(--spacing-xs) var(--spacing-md);
+    height: 56px;
+  }
+
+  .toolbar-brand {
+    gap: var(--spacing-sm);
+  }
+
+  .toolbar-title {
+    font-size: var(--font-size-base);
+  }
+
+  .toolbar-badge {
+    display: none;
+  }
+
+  .toolbar-actions {
+    gap: var(--spacing-xs);
+  }
+
+  /* Hide button text, show only icons */
+  .toolbar-btn span {
+    display: none;
+  }
+
+  .toolbar-btn {
+    padding: var(--spacing-sm);
+  }
+
+  .toolbar-divider {
+    margin: 0 var(--spacing-xs);
+    height: 20px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE (< 480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  .toolbar {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    height: 50px;
+  }
+
+  .toolbar-title {
+    display: none;
+  }
+
+  .toolbar-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .toolbar-btn {
+    padding: 8px;
+  }
+
+  .toolbar-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .toolbar-divider {
+    display: none;
+  }
+
+  .toolbar-toast {
+    top: 60px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+  }
+}

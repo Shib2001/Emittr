@@ -1,0 +1,138 @@
+/**
+ * Connection Component Styles
+ * Ultra-slim smooth threads with animated arrows and dynamic glow
+ */
+
+/* ============================================
+   CONNECTION PATH - ULTRA SLIM THREAD
+   ============================================ */
+
+.connection-path {
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  opacity: 0.7;
+  transition:
+    stroke-width 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.connection--highlighted .connection-path {
+  stroke-width: 1.5;
+  opacity: 1;
+}
+
+.connection:hover .connection-path {
+  opacity: 0.9;
+}
+
+/* ============================================
+   GLOW EFFECT - Dynamic Color Glow
+   ============================================ */
+
+.connection-glow {
+  stroke-width: 10;
+  stroke-linecap: round;
+  opacity: 0.25;
+  filter: blur(8px);
+  transition: opacity 0.4s ease;
+}
+
+.connection--highlighted .connection-glow {
+  opacity: 0.6;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.connection:hover .connection-glow {
+  opacity: 0.4;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    filter: blur(8px);
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(10px);
+  }
+}
+
+/* ============================================
+   ANIMATED ARROW - Flows along the thread
+   ============================================ */
+
+.connection-arrow polygon {
+  opacity: 0.9;
+  filter: drop-shadow(0 0 3px var(--connection-color));
+  transition: opacity 0.3s ease;
+}
+
+.connection--highlighted .connection-arrow polygon {
+  filter: drop-shadow(0 0 6px var(--connection-color));
+}
+
+/* ============================================
+   END DOT - Subtle connection point
+   ============================================ */
+
+.connection-end-dot {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.connection--highlighted .connection-end-dot {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--connection-color));
+  animation: dot-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    r: 3;
+  }
+  50% {
+    r: 4;
+  }
+}
+
+/* ============================================
+   BRANCH LABELS - Clean & Modern
+   ============================================ */
+
+.connection-label-group {
+  transition: transform 0.2s ease;
+}
+
+.connection-label-group:hover {
+  transform: scale(1.05);
+}
+
+.connection-label-bg {
+  fill: rgba(15, 15, 20, 0.95);
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+.connection-label {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  fill: var(--text-secondary);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.connection-label--true {
+  fill: #4ade80;
+  filter: drop-shadow(0 0 3px rgba(74, 222, 128, 0.6));
+}
+
+.connection-label--false {
+  fill: #f87171;
+  filter: drop-shadow(0 0 3px rgba(248, 113, 113, 0.6));
+}

@@ -1,0 +1,583 @@
+/**
+ * SplashScreen Styles
+ * Premium animated splash with particles, orbits, and modern glassmorphism
+ */
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+.splash-screen--fade-out {
+  opacity: 0;
+  transform: scale(1.1);
+  pointer-events: none;
+}
+
+/* ============================================
+   ANIMATED BACKGROUNDS
+   ============================================ */
+
+.splash-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(124, 58, 237, 0.4) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(6, 182, 212, 0.4) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(236, 72, 153, 0.2) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      #0a0a1a 0%,
+      #1a1a2e 25%,
+      #16213e 50%,
+      #0f0f23 75%,
+      #0a0a1a 100%
+    );
+  animation: bgShift 8s ease-in-out infinite;
+}
+
+@keyframes bgShift {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(20deg);
+  }
+}
+
+.splash-bg-mesh {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  animation: meshFloat 20s linear infinite;
+}
+
+@keyframes meshFloat {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(60px, 60px);
+  }
+}
+
+/* ============================================
+   FLOATING PARTICLES
+   ============================================ */
+
+.splash-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.splash-particle {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(168, 85, 247, 0.8)
+  );
+  border-radius: 50%;
+  filter: blur(1px);
+  animation: particleFloat var(--duration) ease-in-out infinite;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1);
+  }
+}
+
+/* ============================================
+   CONTENT CONTAINER
+   ============================================ */
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 10;
+}
+
+/* ============================================
+   ORBITING ELEMENTS
+   ============================================ */
+
+.splash-orbit-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.splash-orbit {
+  position: absolute;
+  width: var(--orbit-size);
+  height: var(--orbit-size);
+  border: 1px dashed rgba(99, 102, 241, 0.2);
+  border-radius: 50%;
+  animation: orbitSpin var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+}
+
+.splash-orbit-dot {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.8);
+}
+
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   LOGO WITH GLOW RINGS
+   ============================================ */
+
+.splash-logo-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo-ring {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.5),
+      rgba(168, 85, 247, 0.5),
+      rgba(236, 72, 153, 0.5)
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation:
+    ringPulse 2s ease-in-out infinite,
+    ringSpin 10s linear infinite;
+}
+
+.splash-logo-ring--delayed {
+  width: 180px;
+  height: 180px;
+  animation-delay: 0.5s;
+  opacity: 0.5;
+}
+
+@keyframes ringPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes ringSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.splash-logo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  padding: 4px;
+  box-shadow:
+    0 0 60px rgba(99, 102, 241, 0.5),
+    0 0 100px rgba(168, 85, 247, 0.3),
+    inset 0 0 30px rgba(99, 102, 241, 0.2);
+  animation: logoEntrance 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  60% {
+    transform: scale(1.15) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.splash-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ============================================
+   TITLE WITH LETTER ANIMATION
+   ============================================ */
+
+.splash-title-container {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.splash-title-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.splash-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-letter {
+  display: inline-block;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: letterReveal 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  animation-delay: var(--letter-delay);
+  opacity: 0;
+  transform: translateY(50px) rotate(10deg);
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.5));
+}
+
+.splash-title-container.show .splash-letter {
+  animation-play-state: running;
+}
+
+@keyframes letterReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.splash-tagline {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.8),
+    rgba(168, 85, 247, 0.8),
+    rgba(236, 72, 153, 0.8)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: taglineGlow 2s ease-in-out infinite;
+}
+
+@keyframes taglineGlow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+/* ============================================
+   CIRCULAR PROGRESS INDICATOR
+   ============================================ */
+
+.splash-progress-container {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-progress-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.splash-progress-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 4;
+}
+
+.splash-progress-bar {
+  fill: none;
+  stroke: url(#progressGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 0.1s ease;
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.6));
+  stroke: #a855f7;
+}
+
+.splash-progress-text {
+  position: absolute;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   CORNER ACCENTS
+   ============================================ */
+
+.splash-corner {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+}
+
+.splash-corner::before,
+.splash-corner::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.6),
+    rgba(168, 85, 247, 0.4)
+  );
+}
+
+.splash-corner--tl {
+  top: 0;
+  left: 0;
+}
+
+.splash-corner--tl::before {
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 2px;
+}
+
+.splash-corner--tl::after {
+  top: 20px;
+  left: 20px;
+  width: 2px;
+  height: 40px;
+}
+
+.splash-corner--tr {
+  top: 0;
+  right: 0;
+}
+
+.splash-corner--tr::before {
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 2px;
+}
+
+.splash-corner--tr::after {
+  top: 20px;
+  right: 20px;
+  width: 2px;
+  height: 40px;
+}
+
+.splash-corner--bl {
+  bottom: 0;
+  left: 0;
+}
+
+.splash-corner--bl::before {
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 2px;
+}
+
+.splash-corner--bl::after {
+  bottom: 20px;
+  left: 20px;
+  width: 2px;
+  height: 40px;
+}
+
+.splash-corner--br {
+  bottom: 0;
+  right: 0;
+}
+
+.splash-corner--br::before {
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 2px;
+}
+
+.splash-corner--br::after {
+  bottom: 20px;
+  right: 20px;
+  width: 2px;
+  height: 40px;
+}
+
+/* Corner animation */
+.splash-corner::before,
+.splash-corner::after {
+  animation: cornerPulse 2s ease-in-out infinite;
+}
+
+@keyframes cornerPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .splash-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .splash-logo-ring {
+    width: 130px;
+    height: 130px;
+  }
+
+  .splash-logo-ring--delayed {
+    width: 150px;
+    height: 150px;
+  }
+
+  .splash-title {
+    font-size: 2rem;
+  }
+
+  .splash-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+  }
+
+  .splash-progress-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .splash-orbit {
+    display: none;
+  }
+}
