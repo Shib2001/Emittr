@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd emittr && npm install && npm run build",
+  "outputDirectory": "emittr/dist",
+  "installCommand": "cd emittr && npm install",
+  "framework": "vite"
+}
